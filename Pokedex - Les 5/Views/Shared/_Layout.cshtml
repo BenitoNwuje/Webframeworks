@@ -1,0 +1,85 @@
+﻿@{ 
+    Random num = new Random();
+    int ran = num.Next(1, 151);
+    }
+
+@functions{
+    bool isDarkMode(string color)
+    {
+        System.Drawing.Color col = System.Drawing.ColorTranslator.FromHtml(color);
+        if (col.R * 0.2126 + col.G * 0.7152 + col.B * 0.0722 > 255 / 2)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+}
+
+@{ 
+    var navColor = @Configuration["NavColor"];
+}
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@ViewBag.Title </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <style>
+        /* Modify the background color */
+
+        .navbar-custom {
+            background-color: @navColor;
+        }
+            /* Modify brand and text color */
+
+            .navbar-custom .navbar-brand,
+            .navbar-custom .navbar-text {
+                color: green;
+            }
+    </style>
+
+    @if (@isDarkMode(navColor))
+    {
+        <nav class="navbar navbar-expand-sm navbar-custom navbar-dark">
+            <img src="/images/@(ran).png" alt="Pokemon" />
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Pokedex" asp-action="Index">Pokedex</a>
+                </li>
+            </ul>
+        </nav>
+    }
+    else
+    {
+        <nav class="navbar navbar-expand-sm navbar-custom navbar-light">
+            <img src="/images/@(ran).png" alt="Pokemon" />
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Pokedex" asp-action="Index">Pokedex</a>
+                </li>
+            </ul>
+        </nav>
+    }
+    <div>
+        @RenderBody();
+    </div>
+</body>
+</html>

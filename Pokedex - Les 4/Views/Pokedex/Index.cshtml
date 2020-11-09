@@ -1,0 +1,26 @@
+﻿@model List<Pokemon>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Pokedex";
+    var maxPokemon = @Configuration["MaxPokemon"];
+}
+
+
+
+
+
+
+
+@{
+
+    foreach (var poke in Model)
+    {
+        <a class="nav-link" asp-controller="Pokedex" asp-action="Details" asp-route-id="@poke.Id">
+
+            <img src="/images/@(poke.Id).png " alt="Pokemon" />
+        </a>
+    }
+}
+<b>@ViewBag.Date</b>
+
+

@@ -1,0 +1,52 @@
+﻿@model Pokemon
+@{ 
+    Layout = "_Layout";
+    ViewBag.Title = $"Pokemon - {Model.Name} "; }
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Image</th>
+            <td> <img src="/images/@(Model.Id).png" /> </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="col">Name</th>
+            <td>@Model.Name.English </td>
+        </tr>
+        <tr>
+            <th scope="col">Types</th>
+            <td>
+                <ul>
+                    @{ for (int i = 0; i < Model.Type.Length; i++)
+                        {
+            <li>@Model.Type[i]    </li>
+ } }
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th scope="col">HP</th>
+            <td>@Model.Base.Hp</td>
+
+        </tr>
+        <tr>
+            <th scope="col">Attack</th>
+            <td>@Model.Base.Attack</td>
+
+        </tr>
+        <tr>
+            <th scope="col">Defense</th>
+            <td>@Model.Base.Defense</td>
+        </tr>
+        <tr>
+            <th scope="col">Sp. Attack</th>
+            <td>@Model.Base.SpAttack</td>
+        </tr>
+        <tr>
+            <th scope="col">Sp. Defense</th>
+            <td>@Model.Base.Defense</td>
+
+        </tr>
+    </tbody>
+</table>

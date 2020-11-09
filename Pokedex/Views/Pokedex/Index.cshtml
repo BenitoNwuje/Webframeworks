@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "_Layout";
+    ViewBag.Title = "Pokedex";
+    var maxPokemon = @Configuration["MaxPokemon"];
+}
+
+@{
+    for (int i = 1; i <= Convert.ToInt32(maxPokemon); i++)
+    {
+        <img src="/images/@(i).png " alt="Pokemon" />
+
+    }
+}
